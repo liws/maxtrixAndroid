@@ -19,28 +19,7 @@ class MonitorMemery(MonitorBase):
         super(MonitorMemery,self).__init__(outFile,intervalTime)
         self.monitorData = MemeryData()
 
-    def startMonitor(self):
-        self.exitFlag = False
-        if(not GC.checkGC()):
-            return
-        memeryCmd=self.getMemeryCmd()
-        
-        test = 1
-        while(not self.exitFlag):
-            nowTime=util.getCurTimeStr()
-            process=subprocess.Popen(memeryCmd,shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
-            process.wait()
-            process_out = process.stdout.readlines()
-            process.stdout.close()
-            self.parseMemery(nowTime, process_out)
-            time.sleep(self.intervalTime)
-            test+=1
-            if(test == 10):
-                break
-
-        self.monitorData.save2Csv(self.outFile)
-
-    def parseMemery(self,sampleTime, process_out):
+    def parseMonitorData(self,sampleTime, process_out):
         lists=[]
         for index in range(0,len(process_out)):
             if(process_out[index].startswith("  Native Heap")):
@@ -57,6 +36,6 @@ class MonitorMemery(MonitorBase):
         print(self.monitorData.data)
         pass
 
-    def getMemeryCmd(self):
+    def getCmd(self):
         memeryCmd = "{} shell dumpsys meminfo -a {}".format(GC.ADB,GC.APK)
         return memeryCmd

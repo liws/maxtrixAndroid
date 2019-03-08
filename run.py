@@ -15,12 +15,11 @@ if(__name__=="__main__"):
     batteryMonitor = MonitorBatteryTemperature(outfile,2)
     batteryMonitor.startMonitor()
 
-    
-    # outfile=os.path.join(GC.OUTPATH,"cpuoutput.csv")
-    # monitorCpu = MonitorCpu(outfile,2)
-    # monitorCpu.startMonitor()
+    outfile=os.path.join(GC.OUTPATH,"cpuoutput.csv")
+    monitorCpu = MonitorCpu(outfile,2)
+    monitorCpu.startMonitor()
 
-    # outfile=os.path.join(GC.OUTPATH,"memeryoutput.csv")
-    # monitorMeme = MonitorMemery(outfile,2) 
-    # monitorMeme.startMonitor()
-    # print(outfile)
+    outfile=os.path.join(GC.OUTPATH,"memeryoutput.csv")
+    monitorMeme = MonitorMemery(outfile,2) 
+    monitorMeme.startMonitor()
+    print(outfile)
