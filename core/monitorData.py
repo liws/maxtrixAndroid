@@ -36,4 +36,13 @@ class CpuData(MonitorData):
     def clear(self):
         self.data=[("sampleTime","cpuValue")]
 
+
+class BatteryData(MonitorData):
+    def __init__(self):
+        MonitorData()
+        self.clear()
+
+    def clear(self):
+        self.data=["sampleTime","level","temperature"]
+
         
