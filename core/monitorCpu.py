@@ -16,6 +16,8 @@ class   MonitorCpu(MonitorBase):
         # MonitorBase(outFile,intervalTime)
         super(MonitorCpu,self).__init__(outFile,intervalTime)
         self.monitorData = CpuData()
+        self._descrption="Monitor Cpu {}".format(outFile)
+
 
     def parseMonitorData(self,sampleTime,process_out):
         if(len(process_out)==0):
@@ -23,7 +25,7 @@ class   MonitorCpu(MonitorBase):
         lines=process_out[0].split("%")
         line=lines[0].replace("\r\n","").strip()
         self.monitorData.append((sampleTime,line))
-        print(self.monitorData.data)
+        # print(self.monitorData.data)
         pass
 
     def getCmd(self):

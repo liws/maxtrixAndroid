@@ -15,7 +15,7 @@ class   GC(object):
         cmdAdb = result.read()
         if cmdAdb:
             GC.ADB = cmdAdb.replace("\n","")
-        GC.OUTPATH=os.path.abspath("./")
+        GC.OUTPATH=os.path.abspath("./output")
 
     @classmethod
     def checkGC(cls):

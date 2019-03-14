@@ -18,6 +18,7 @@ class MonitorBatteryTemperature(MonitorBase):
         pass
         super(MonitorBatteryTemperature,self).__init__(outFile,intervalTime)
         self.monitorData = BatteryData()
+        self._descrption="Monitor BatteryTemperature {}".format(outFile)
     
 
     def parseMonitorData(self,sampleTime, process_out):
@@ -36,7 +37,7 @@ class MonitorBatteryTemperature(MonitorBase):
             if(level != 0 and temperature != 0):
                 break
         self.monitorData.append((level,temperature))
-        print(self.monitorData.data)
+        # print(self.monitorData.data)
 
     def getCmd(self):
         cmd = "{} shell dumpsys battery".format(GC.ADB)

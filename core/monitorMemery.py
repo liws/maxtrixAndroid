@@ -18,6 +18,8 @@ class MonitorMemery(MonitorBase):
         pass
         super(MonitorMemery,self).__init__(outFile,intervalTime)
         self.monitorData = MemeryData()
+        self._descrption="Monitor Memory {}".format(outFile)
+
 
     def parseMonitorData(self,sampleTime, process_out):
         lists=[]
@@ -33,7 +35,7 @@ class MonitorMemery(MonitorBase):
             if(line != '' or ('\r\n' in line)):
                 heap.append(line.replace("\r\n",''))
         self.monitorData.append((sampleTime,float(heap[-3])/1024,float(heap[-2])/1024,float(heap[-1])/1024))
-        print(self.monitorData.data)
+        # print(self.monitorData.data)
         pass
 
     def getCmd(self):

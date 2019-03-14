@@ -13,6 +13,7 @@ class   MonitorBase(object):
         self.intervalTime=intervalTime
         self.exitFlag=False
         self.monitorData=None
+        self._descrption=None
 
     def endMonitor(self):
         self.exitFlag=True
@@ -23,7 +24,6 @@ class   MonitorBase(object):
             return
         cmd=self.getCmd()
         
-        test = 1
         while(not self.exitFlag):
             nowTime=util.getCurTimeStr()
             process=subprocess.Popen(cmd,shell=True, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
@@ -32,9 +32,6 @@ class   MonitorBase(object):
             process.stdout.close()
             self.parseMonitorData(nowTime, process_out)
             time.sleep(self.intervalTime)
-            test+=1
-            if(test == 10):
-                break
         self.monitorData.save2Csv(self.outFile)
 
     
@@ -43,3 +40,6 @@ class   MonitorBase(object):
 
     def getCmd(self):
         pass
+    
+    def printDesc(self):
+        print(self._descrption)
